@@ -11,6 +11,7 @@ use App\Tamano;
 use App\Cliente;
 use App\MetodoPago;
 use App\Venta;
+use App\Tienda;
 
 class CartController extends Controller
 {
@@ -22,6 +23,7 @@ class CartController extends Controller
         if (!\Session::has('type')) \Session::put('type',null);
         if (!\Session::has('ubicacion')) \Session::put('ubicacion',null);
         if (!\Session::has('paymethod')) \Session::put('paymethod',null);
+        if (!\Session::has('ventas')) \Session::put('ventas',array());
     }
 
     //show cart
@@ -215,13 +217,12 @@ class CartController extends Controller
             }
             $venta->update(['total'=>$total_venta]);
 
+            $ventas=\Session::get('ventas');
+            $ventas[]=['id'=>$venta->id];
+            \Session::put('ventas',$ventas);
+
         return redirect(route('cart.trash'));
     }
-
-
-
-
-
 
 
     //usuario
@@ -309,5 +310,17 @@ class CartController extends Controller
         return view('paymethod_edit',compact('metodos'));
     }
 
+
+    //ventas
+    public function getPedidos(){
+        $ventas=\Session::get('ventas');
+        $tienda=Tienda::all()->first();
+        return view('pedido',compact('ventas','tienda'));
+    }
+
+    public function getPedido($id){
+        $venta=Venta::find($id);
+        return view('pedido_detalle',compact('venta'));
+    }
 
 }

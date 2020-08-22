@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             [
             'nombre'=>'coca-cola',
             'descripcion'=>'250 ml.',
-            'imagen'=>'productos/comida-rapida-casera.jpg',
+            'imagen'=>'productos/coca.jpg',
             'imagen_icono'=>'',
             'precio'=>5,
             'disponible'=>true,
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             [
                 'nombre'=>'Pollo frito',
                 'descripcion'=>'con arroz, papas y platano.',
-                'imagen'=>'productos/comida-rapida-casera.jpg',
+                'imagen'=>'productos/pollo.jpg',
                 'imagen_icono'=>'',
                 'precio'=>25,
                 'disponible'=>true,

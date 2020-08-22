@@ -36,7 +36,7 @@
                                     <td>{{ $venta->total.' Bs.' }}</td>
                                     <td></td>
                                     <td>
-                                        <input href="" class="btn btn-warning" value="ver detalles">
+                                    <a href="{{ route('admin.detalle_pedido',$venta->id) }}" class="btn btn-warning" >ver detalles</a>
                                     </td>
                                 </tr>
                                 @endforeach

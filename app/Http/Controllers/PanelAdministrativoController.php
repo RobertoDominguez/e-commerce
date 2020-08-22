@@ -235,4 +235,10 @@ class PanelAdministrativoController extends Controller
         return view('admin.pedidos',compact('ventas'));
     }
 
+    public function getDetallePedido($id){
+        $venta=Venta::find($id);
+
+        return view('admin.detalle_pedido',compact('venta'));
+    }
+
 }

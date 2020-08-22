@@ -29,7 +29,7 @@
 
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #ffc300;">
-      <img src="../logo.png" class="navbar-brand store-image" alt="">
+      <img src="{{asset('/logo.png')}}" class="navbar-brand store-image" alt="">
       
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,7 @@
             <a class="nav-item nav-link" href="/informacion">
               <img src="https://image.flaticon.com/icons/svg/545/545684.svg" width="50" height="50"  alt="">
             </a>
-            <a class="nav-item nav-link" href="/informacion">
+            <a class="nav-item nav-link" href="/pedidos">
               <img src="https://www.flaticon.es/premium-icon/icons/svg/2117/2117251.svg" width="50" height="50"  alt="">
             </a>  
             <a class="nav-item nav-link" href="/cart/mostrar">

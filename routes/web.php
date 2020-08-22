@@ -39,6 +39,9 @@ Route::post('/cart/delete_item','CartController@deleteItem')->name('cart.delete_
 Route::post('/cart/buy','CartController@buy')->name('cart.buy');
 Route::get('/cart/vaciar','CartController@trash')->name('cart.trash');
 
+Route::get('/pedidos','CartController@getPedidos')->name('pedidos');
+Route::get('/pedidos/estado/{id}','CartController@getPedido')->name('pedido.estado');
+
 //admin
 
 Route::get('/admin/login','AdministradorController@getLogin')->name('admin.view.login');
@@ -47,6 +50,7 @@ Route::post('/admin/logout','AdministradorController@logout')->name('admin.logou
 
 route::get('admin/menu','PanelAdministrativoController@getMenuPedidos')->name('admin.menu');
 route::get('/admin/pedidos','PanelAdministrativoController@getPedidos')->name('admin.pedidos');
+route::get('/admin/pedido/{id}','PanelAdministrativoController@getDetallePedido')->name('admin.detalle_pedido');
 
 Route::get('admin/productos','PanelAdministrativoController@getProducts')->name('admin.products');
 Route::get('admin/productos/add','PanelAdministrativoController@getAddProduct')->name('admin.add_product');
@@ -71,3 +75,5 @@ Route::post('admin/extras/delete/{id}','PanelAdministrativoController@deleteExtr
 
 
 //symlink('../storage/app/public', '/public');
+//db 123456
+//usuario Passw0rd

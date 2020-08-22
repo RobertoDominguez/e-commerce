@@ -52,4 +52,8 @@ class TiendaController extends Controller
         $tienda=Tienda::all()->first();
         return view('informacion',compact('tienda'));
     }
+
+    
+
+
 }

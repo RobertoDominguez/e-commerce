@@ -288,7 +288,7 @@ input[type=text]:placeholder,input[type=password]:placeholder {
         <!-- Icon -->
 
         <div class="fadeIn first">
-          <img src="logo.png" id="icon" alt="User Icon" />
+          <img src="{{asset('/admin/logo.png')}}" id="icon" alt="User Icon" />
         </div>
     
         <!-- Login Form -->
