@@ -18,7 +18,7 @@ class Delivery extends Migration
             $table->foreign('id_venta')->references('id')->on('venta')->onDelete('cascade')->onUpdate('cascade');
             $table->Double('lat');
             $table->Double('long');
-            $table->UnsignedFloat('costo');
+            $table->UnsignedFloat('costo_envio');
             $table->string('ubicacion',250);
             $table->timestamps();
         });

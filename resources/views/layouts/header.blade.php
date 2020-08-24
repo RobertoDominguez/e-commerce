@@ -29,7 +29,7 @@
 
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #ffc300;">
-      <img src="{{asset('/logo.png')}}" class="navbar-brand store-image" alt="">
+      <img src="{{asset('logo.png')}}" class="navbar-brand store-image" alt="">
       
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

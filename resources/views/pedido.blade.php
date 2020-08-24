@@ -27,14 +27,14 @@
     <div class="container">
         <div class="form-row align-items-center">
             <h2>Pedidos recientes</h2>
-            <select id="editPaymethod" name="tipo" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <select id="id_venta" name="tipo" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                 <option  value="ninguno">Ninguno</option>
             @foreach ($ventas as $venta)
                 <option  value="{{ $venta['id'] }}">{{ 'pedido#'.$venta['id']}}</option>
               @endforeach
             </select>
         </div>
-        <input type="button" id="btnSubmitPaymethod" class="btn-warning" value="Ver pedido">
+        <input type="button" id="btnVerPedido" class="btn-warning" value="Ver pedido">
     </div>
     <div class="container" id="pedido_content">
     </div>
@@ -54,19 +54,14 @@
     <br>
     <br>
     <script>
-        $('#btnSubmitPaymethod').click(function(e){
-            e.preventDefault()
-            var parametros={
-                "id": $('#editPaymethod').val(),
-                "_token":'{{csrf_token()}}'
-            };
+        $('#btnVerPedido').click(function(){
+            var id=$('#id_venta').val();
+            var url = '{{ route("pedido.estado",":id") }}';
             $.ajax({
-                data: parametros,
-                url: '{{route('paymethod.edit')}}',
-                type: 'post',
-                
+                url: url.replace(':id', id),
+                type: 'get',
                 success: function(data){
-                    $('#paymethod_content').html(data);
+                    $('#pedido_content').html(data);
                 }
             });
         });

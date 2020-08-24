@@ -134,7 +134,8 @@
             var parametros={
                 "ubicacion": $('#ubicacion').val(),
                 "lat": $('#lat').val(),
-                "lng": $('#lng').val(),
+                "long": $('#lng').val(),
+                "costo_envio":10,
                 "_token":'{{csrf_token()}}'
             };
             $.ajax({

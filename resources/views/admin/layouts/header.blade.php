@@ -80,39 +80,13 @@
                                 <a class="nav-link" href="{{route('admin.extras')}}">Extras</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
-                            ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Paginas
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                        ></a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"
-                                    >Autenticacion
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                ></a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="password.html">Se te olvidó tu contraseña</a></nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"
-                                    >Politicas
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                                ></a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="/solicitudes">Solicitudes auxiliar</a>
-                                        <a class="nav-link" href="500.html">Inconvenientes</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html"
+                        <div class="sb-sidenav-menu-heading">Reportes</div>
+                        <a class="nav-link" href="{{route('admin.reporte_ventas')}}"
                             ><div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts</a
-                        ><a class="nav-link" href="tables.html"
+                            Ventas</a
+                        ><a class="nav-link" href="{{route('admin.reporte_estadisticas')}}"
                             ><div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables</a
+                            Estadisticas</a
                         >
                     </div>
                 </div>
@@ -144,13 +118,13 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script> --}}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="Template/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="Template/assets/demo/chart-area-demo.js"></script>
     <script src="Template/assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script> --}}
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="Template/assets/demo/datatables-demo.js"></script>
 

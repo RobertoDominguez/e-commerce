@@ -12,6 +12,7 @@ use App\Cliente;
 use App\MetodoPago;
 use App\Venta;
 use App\Tienda;
+use App\Delivery;
 
 class CartController extends Controller
 {
@@ -30,7 +31,7 @@ class CartController extends Controller
     public function show(){
         $detalles=\Session::get('cart');
         $extras=\Session::get('cart_detalle');
-        //dd($detalles);
+        //dd(\Session::get('cart_detalle'));
         return view('cart',compact('detalles','extras'));
     }
 
@@ -123,6 +124,7 @@ class CartController extends Controller
         $location=\Session::get('ubicacion');
         $metodo=\Session::get('paymethod');
 
+
         if (count($detalles)==0){
          return redirect()->back()->withErrors('No tiene ningun producto para comprar.');
         }
@@ -139,6 +141,7 @@ class CartController extends Controller
         if (is_null($metodo)){
             return redirect()->back()->withErrors('Seleccione el metodo de pago.');
         }
+
 
             $cliente=Cliente::where('email',$usuario['email'])->first();
             if (is_null($cliente)){
@@ -165,6 +168,13 @@ class CartController extends Controller
                     'entregado'=>false,
                     'comentario_respuesta'=>''
                     ]);
+
+                Delivery::create(['lat'=>$location['lat'],
+                                'long'=>$location['long'],
+                                'ubicacion'=>$location['ubicacion'],
+                                'costo_envio'=>$location['costo_envio'],
+                                'id_venta'=>$venta->id
+                                ]);
             }else{
                 $venta=Venta::create([
                     'comentario'=>$comentario,
@@ -272,9 +282,11 @@ class CartController extends Controller
         $ubicacion=$this->validate(request(),[
             'ubicacion'=>'required',
             'lat'=>'required',
-            'lng'=>'required',
-            'costo_envio'=>''
+            'long'=>'required',
+            'costo_envio'=>'required'
         ]);
+
+
         \Session::put('ubicacion',$ubicacion);
         return redirect(route('type'));
     }
@@ -320,7 +332,20 @@ class CartController extends Controller
 
     public function getPedido($id){
         $venta=Venta::find($id);
-        return view('pedido_detalle',compact('venta'));
+        $cliente=Cliente::find($venta->id_cliente);
+        if ($venta->es_delivery==true){
+            $venta=Venta::join('delivery','venta.id','delivery.id_venta')->where('venta.id',$id)->get()->first();
+        }
+        
+        $detalles=DetalleVenta::where('id_venta',$id)->get();
+        $extras=array();
+        foreach ($detalles as $detalle){
+            $extra_array=ExtraDetalleVenta::where('id_detalle_venta',$detalle->id)->get();
+
+            $extras[]=$extra_array;
+        }
+
+        return view('pedido_detalle',compact('venta','cliente'),compact('detalles','extras'));
     }
 
 }

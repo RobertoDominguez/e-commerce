@@ -9,6 +9,11 @@ use App\Producto;
 use App\Categoria;
 use App\Tamano;
 use App\Venta;
+use App\Cliente;
+use App\DetalleVenta;
+use App\ExtraDetalleVenta;
+use \Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PanelAdministrativoController extends Controller
 {
@@ -18,8 +23,18 @@ class PanelAdministrativoController extends Controller
     }
 
     public function getMenuPedidos(){
-       // dd(Auth::guard('administrador')->user()->id);
-        return view('admin.menu');
+       // dd(Auth::guard('administrador')->user()->id);       
+       $actual =Carbon::now();
+
+        $ganancia_mensual=Venta::whereMonth('created_at',$actual->format('m'))
+        ->whereYear('created_at',$actual->format('Y'))
+        ->select('total')->sum('total');
+        $ganancia_anual=Venta::whereYear('created_at',$actual->format('Y'))->select('total')->sum('total');
+
+        $pedidos_pendientes=Venta::where(function ($query) {$query->where('aceptado', false)
+            ->orWhere('entregado',false);})->where('rechazado',false)->select('id')->count('id');
+
+        return view('admin.menu',compact('ganancia_mensual','ganancia_anual'),compact('pedidos_pendientes'));
     }
 
     //productos
@@ -230,15 +245,75 @@ class PanelAdministrativoController extends Controller
 
 
     public function getPedidos(){
-        $ventas=Venta::where('venta.rechazado',false)
+        $ventas=Venta::where('venta.rechazado',false)->where('entregado',false)
         ->orderBy('id','desc')->get();
+
         return view('admin.pedidos',compact('ventas'));
     }
 
     public function getDetallePedido($id){
         $venta=Venta::find($id);
+        $cliente=Cliente::find($venta->id_cliente);
+        if ($venta->es_delivery==true){
+            $venta=Venta::join('delivery','venta.id','delivery.id_venta')->where('venta.id',$id)->get()->first();
+        }
+        
+        $detalles=DetalleVenta::where('id_venta',$id)->get();
+        $extras=array();
+        foreach ($detalles as $detalle){
+            $extra_array=ExtraDetalleVenta::where('id_detalle_venta',$detalle->id)->get();
 
-        return view('admin.detalle_pedido',compact('venta'));
+            $extras[]=$extra_array;
+        }
+
+        return view('admin.detalle_pedido',compact('venta','cliente'),compact('detalles','extras'));
+    }
+
+    public function aceptarPedido($id){
+        Venta::find($id)->update(['aceptado'=>true]);
+        return redirect()->route('admin.detalle_pedido',$id);
+    }
+
+    public function rechazarPedido($id,Request $request){
+        if (is_null($request->comentario)){
+         return redirect()->back()->withErrors('Si va a rechazar un pedido tiene que especificar el motivo');
+        }
+        Venta::find($id)->update(['rechazado'=>true,'comentario_respuesta'=>$request->comentario]);
+        return redirect()->route('admin.detalle_pedido',$id);
+    }
+
+    public function entregarPedido($id){
+        Venta::find($id)->update(['entregado'=>true]);
+        return redirect()->route('admin.detalle_pedido',$id);
+    }
+
+    public function reporteVentas(){
+        $ventas=Venta::where('aceptado',true)->where('entregado',true)->get();
+        return view('admin.reports.ventas',compact('ventas'));
+    }
+
+    public function reporteEstadisticas(){
+
+        $producto_mas_vendido=Producto::find( DetalleVenta::select('id_producto',DB::raw('count(*) as total'))->groupBy('id_producto')->orderBy('total','desc')->first()->id_producto );
+
+        return view('admin.reports.estadisticas',compact('producto_mas_vendido'));
     }
 
 }
+
+/*
+
+                                        @if (($venta->aceptado==false) || ($venta->rechazado==false) || ($venta->entregado==false))
+                                            @if ($venta->entregado==true)
+                                                <p>Entregado.</p>
+                                            @endif
+                                            @if (($venta->aceptado==true) && ($venta->entregado==false))
+                                                <p>En Camino</p>
+                                            @endif
+                                            @if ($venta->rechazado==true)
+                                                <p>Rechazado.</p>
+                                            @endif
+                                        @else
+                                        <p class="font-weight-bold">No Atendido!</p>
+                                        @endif
+*/

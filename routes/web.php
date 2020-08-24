@@ -51,6 +51,9 @@ Route::post('/admin/logout','AdministradorController@logout')->name('admin.logou
 route::get('admin/menu','PanelAdministrativoController@getMenuPedidos')->name('admin.menu');
 route::get('/admin/pedidos','PanelAdministrativoController@getPedidos')->name('admin.pedidos');
 route::get('/admin/pedido/{id}','PanelAdministrativoController@getDetallePedido')->name('admin.detalle_pedido');
+Route::post('/admin/aceptar_pedido/{id}','PanelAdministrativoController@aceptarPedido')->name('admin.aceptar_pedido');
+Route::post('/admin/rechazar_pedido/{id}','PanelAdministrativoController@rechazarPedido')->name('admin.rechazar_pedido');
+Route::post('/admin/entregar_pedido/{id}','PanelAdministrativoController@entregarPedido')->name('admin.entregar_pedido');
 
 Route::get('admin/productos','PanelAdministrativoController@getProducts')->name('admin.products');
 Route::get('admin/productos/add','PanelAdministrativoController@getAddProduct')->name('admin.add_product');
@@ -73,6 +76,8 @@ Route::get('admin/extras/edit/{id}','PanelAdministrativoController@getEditExtra'
 Route::post('admin/extras/edit/{id}','PanelAdministrativoController@editExtra')->name('admin.edit_extra');
 Route::post('admin/extras/delete/{id}','PanelAdministrativoController@deleteExtra')->name('admin.delete_extra');
 
+Route::get('admin/reportes/ventas','PanelAdministrativoController@reporteVentas')->name('admin.reporte_ventas');
+Route::get('admin/reportes/estadisticas','PanelAdministrativoController@reporteEstadisticas')->name('admin.reporte_estadisticas');
 
 //symlink('../storage/app/public', '/public');
 //db 123456
