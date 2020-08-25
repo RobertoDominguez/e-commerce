@@ -46,8 +46,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="/configuracion">Configuraciones</a>
-                    <a class="dropdown-item" href="#">Registro de actividades</a>
+                    {{-- <a class="dropdown-item" href="/configuracion">Configuraciones</a>
+                    <a class="dropdown-item" href="#">Registro de actividades</a> --}}
                     <div class="dropdown-divider"></div>
                     <form  action="{{ route('admin.logout') }}" method="POST">
                         {{ csrf_field() }}
@@ -78,6 +78,7 @@
                                 <a class="nav-link" href="{{route('admin.products')}}">Productos</a>
                                 <a class="nav-link" href="{{route('admin.categories')}}">Categorias</a>
                                 <a class="nav-link" href="{{route('admin.extras')}}">Extras</a>
+                                <a class="nav-link" href="{{route('admin.tamanos')}}">Tamaños</a>
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Reportes</div>

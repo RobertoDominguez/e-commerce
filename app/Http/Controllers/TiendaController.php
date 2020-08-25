@@ -31,7 +31,8 @@ class TiendaController extends Controller
         $producto=Producto::find($id_producto);
         $tamanos=Tamano::join('producto_tamano','tamano.id','producto_tamano.id_tamano')
         ->where('producto_tamano.id_producto',$id_producto)
-        ->where('eliminado',false)->get();
+        ->where('producto_tamano.eliminado',false)
+        ->where('tamano.eliminado',false)->get();
 
         $categorias_extras=Categoria::join('producto','producto.id_categoria','categoria.id')
         ->join('extra_producto','extra_producto.id_extra','producto.id')
@@ -42,7 +43,9 @@ class TiendaController extends Controller
 
         $extras=Producto::join('extra_producto','extra_producto.id_extra','producto.id')
         ->where('extra_producto.id_producto',$id_producto)
-        ->where('eliminado',false)->where('disponible',true)
+        ->where('producto.eliminado',false)
+        ->where('extra_producto.eliminado',false)
+        ->where('disponible',true)
         ->where('es_extra',true)->get();
 
         return view('product_add',compact('producto','tamanos'),compact('categorias_extras','extras'));

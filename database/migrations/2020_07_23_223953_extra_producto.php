@@ -17,6 +17,7 @@ class ExtraProducto extends Migration
             $table->id();
             $table->UnsignedBigInteger('id_extra');
             $table->UnsignedBigInteger('id_producto');
+            $table->boolean('eliminado');
             $table->foreign('id_producto')->references('id')->on('producto')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('id_extra')->references('id')->on('producto')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

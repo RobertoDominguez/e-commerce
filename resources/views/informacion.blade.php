@@ -117,18 +117,18 @@
             if (document.getElementById('myMap')){
                 var tilesProvider='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
                 
-                let myMap = L.map('myMap').setView([51.505, -0.09], 13);
+                let myMap = L.map('myMap').setView([-17.78368558052463, -63.18273568156657], 13);
                 L.tileLayer(tilesProvider,{
                     maxZoom: 18,
                 }).addTo(myMap);
 
-                let marker=L.marker([51.505, -0.09]).addTo(myMap);
+                let marker=L.marker([-17.78368558052463, -63.18273568156657]).addTo(myMap);
 
-                let circle = L.circle([51.505, -0.09], {
+                let circle = L.circle([-17.78368558052463, -63.18273568156657], {
                     color: 'red',
                     fillColor: '#f03',
                     fillOpacity: 0.5,
-                    radius: 500
+                    radius: 800
                 }).addTo(myMap);
 
                 navigator.geolocation.getCurrentPosition(
@@ -142,11 +142,11 @@
                             maxZoom: 18,
                         }).addTo(myMap);
 
-                        let circle = L.circle([coords.latitude,coords.longitude], {
+                        let circle = L.circle([-17.78368558052463,-63.18273568156657], {
                             color: 'red',
                             fillColor: '#f03',
                             fillOpacity: 0.5,
-                            radius: 500
+                            radius: 800
                         }).addTo(myMap);
                         myMap.on('click', onMapClick);
                     },

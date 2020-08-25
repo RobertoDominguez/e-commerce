@@ -39,8 +39,9 @@
                                                 <td>{{ $extra->nombre }}</td>
                                                 <td>{{ $extra->precio.' Bs.' }}</td>
                                                  <td>
-                                                    <a class="btn btn-primary" href="{{route('admin.view_edit_extra',$extra->id)}}">Editar</a>
                                                     <form action="{{route('admin.delete_extra',$extra->id)}}" method="post">
+                                                    <a class="btn btn-primary" href="{{route('admin.view_edit_extra',$extra->id)}}">Editar</a>
+                                                    <a class="btn btn-success" href="{{route('admin.view_extra_product',$extra->id)}}">Añadir a producto</a>
                                                     {{ csrf_field() }}
                                                     <button type="submit" class="btn btn-danger" >Eliminar</button>
                                                     </form>

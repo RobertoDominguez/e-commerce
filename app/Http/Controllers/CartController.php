@@ -104,7 +104,7 @@ class CartController extends Controller
         \Session::put('cart',$cart);
         \Session::put('cart_detalle',$extra_detalle_venta);
 
-        return redirect(route('cart.show'));
+        return redirect()->route('cart.show');
     }
 
     //update item
@@ -113,7 +113,7 @@ class CartController extends Controller
     public function trash(){
         \Session::forget('cart');
         \Session::forget('cart_detalle');
-        return redirect('cart/mostrar');
+        return redirect()->route('pedidos');
     }
 
     public function buy(Request $request){

@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','TiendaController@get')->name('menu');
 Route::get('/cart/product/{id_producto}','TiendaController@getProducto')->name('get_producto');
-Route::get('/cart/detalles')->name('get_detalles');
 Route::post('/cart/add/{id_producto}','CartController@add')->name('add_detalle');
 Route::post('/cart/delete/{nro_detalle}','CartController@delete')->name('delete_detalle');
 
@@ -75,6 +74,23 @@ Route::post('admin/extras/store','PanelAdministrativoController@storeExtra')->na
 Route::get('admin/extras/edit/{id}','PanelAdministrativoController@getEditExtra')->name('admin.view_edit_extra');
 Route::post('admin/extras/edit/{id}','PanelAdministrativoController@editExtra')->name('admin.edit_extra');
 Route::post('admin/extras/delete/{id}','PanelAdministrativoController@deleteExtra')->name('admin.delete_extra');
+//añadir extra a producto
+Route::get('admin/extra_producto/{id_extra}','PanelAdministrativoController@getExtraProductos')->name('admin.view_extra_product');
+Route::post('admin/store_extra_producto/{id_extra}','PanelAdministrativoController@storeExtraProducto')->name('admin.store_extra_product');
+Route::post('admin/delete_extra_producto/{id}','PanelAdministrativoController@deleteExtraProducto')->name('admin.delete_extra_product');
+
+
+Route::get('admin/tamanos','PanelAdministrativoController@getTamanos')->name('admin.tamanos');
+Route::get('admin/tamanos/add','PanelAdministrativoController@getAddTamano')->name('admin.add_tamano');
+Route::post('admin/tamanos/store','PanelAdministrativoController@storeTamano')->name('admin.store_tamano');
+Route::get('admin/tamanos/edit/{id}','PanelAdministrativoController@getEditTamano')->name('admin.view_edit_tamano');
+Route::post('admin/tamanos/edit/{id}','PanelAdministrativoController@editTamano')->name('admin.edit_tamano');
+Route::post('admin/tamanos/delete/{id}','PanelAdministrativoController@deleteTamano')->name('admin.delete_tamano');
+//añadir tamano a producto
+Route::get('admin/tamano_producto/{id_tamano}','PanelAdministrativoController@getTamanoProductos')->name('admin.view_tamano_product');
+Route::post('admin/store_tamano_producto/{id_tamano}','PanelAdministrativoController@storeTamanoProducto')->name('admin.store_tamano_product');
+Route::post('admin/delete_tamano_producto/{id}','PanelAdministrativoController@deleteTamanoProducto')->name('admin.delete_tamano_product');
+
 
 Route::get('admin/reportes/ventas','PanelAdministrativoController@reporteVentas')->name('admin.reporte_ventas');
 Route::get('admin/reportes/estadisticas','PanelAdministrativoController@reporteEstadisticas')->name('admin.reporte_estadisticas');

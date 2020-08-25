@@ -1,6 +1,11 @@
 @extends ('admin.layouts.header')
 
 @section('content')
+<header>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+</header>
 <body>
 
     <div class="card card-secondary">
@@ -55,11 +60,15 @@
                                 @if ($venta->es_delivery)
                                     <p>Delivery</p>    
                                     <p>{{$venta->ubicacion}}</p>
+                                    <div id="myMap" style="height: 200px;"></div>
+                                    <input type="text" name="lat" id="lat" value="{{$venta->lat}}" hidden>
+                                    <input type="text" name="lng" id="lng" value="{{$venta->long}}" hidden>
+                                    
                                 @else
                                     <p>Lo recogere en el local</p>
                                 @endif
                             </div>
-
+                            <br>
                             <div class="row">
                                 <div class="col">
                                     <svg width="50%" height="50%" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -259,5 +268,35 @@
                 </div>
             </nav>
     </div>
+
+
+    <script>
+        $(document).ready(function(){
+               if (document.getElementById('myMap')){
+                   var tilesProvider='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+                   
+                   let myMap = L.map('myMap').setView([-17.78368558052463, -63.18273568156657], 13);
+                   L.tileLayer(tilesProvider,{
+                       maxZoom: 18,
+                   }).addTo(myMap);
+   
+                   
+                   var lat=document.getElementById('lat').value;
+                    var lng=document.getElementById('lng').value;
+                   let marker=L.marker([lat, lng]).addTo(myMap);
+   
+                   let circle = L.circle([-17.78368558052463, -63.18273568156657], {
+                       color: 'red',
+                       fillColor: '#f03',
+                       fillOpacity: 0.5,
+                       radius: 800
+                   }).addTo(myMap);
+   
+                   
+   
+               }
+           });
+   </script>
+
 </body>
 @endsection

@@ -16,6 +16,7 @@ class ProductoTamano extends Migration
         Schema::create('producto_tamano', function (Blueprint $table) {
             $table->id();
             $table->unsignedFloat('precio_extra');
+            $table->boolean('eliminado');
             $table->UnsignedBigInteger('id_producto');
             $table->foreign('id_producto')->references('id')->on('producto')->onDelete('cascade')->onUpdate('cascade');
             $table->UnsignedBigInteger('id_tamano');

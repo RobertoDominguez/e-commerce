@@ -227,72 +227,86 @@ class DatabaseSeeder extends Seeder
             [
             'id_producto'=>'1',
             'id_tamano'=>'1',
-            'precio_extra'=>0
+            'precio_extra'=>0,
+            'eliminado'=>false,
             ],
             [
                 'id_producto'=>'2',
                 'id_tamano'=>'2',
-                'precio_extra'=>8
+                'precio_extra'=>8,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'2',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'5',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'6',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'7',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'8',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'9',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'10',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'11',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'12',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'13',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'14',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'15',
                 'id_tamano'=>'1',
-                'precio_extra'=>0
+                'precio_extra'=>0,
+                'eliminado'=>false,
             ],
         ]);
 
@@ -300,14 +314,17 @@ class DatabaseSeeder extends Seeder
             [
             'id_producto'=>'2',
             'id_extra'=>'3',
+            'eliminado'=>false,
             ],
             [
                 'id_producto'=>'2',
                 'id_extra'=>'4',
+                'eliminado'=>false,
             ],
             [
                 'id_producto'=>'2',
                 'id_extra'=>'16',
+                'eliminado'=>false,
             ]
         ]);
 

@@ -44,8 +44,9 @@
                                                 <td><img src="{{ asset("storage/$producto->imagen" ) }}" style="width: 100px; heigth: 100px" alt=""></td>
                                                 <td>{{ $producto->precio.' Bs.' }}</td>
                                                 <td>
-                                                    <a class="btn btn-primary" href="{{route('admin.view_edit_product',$producto->id)}}">Editar</a>
                                                     <form action="{{route('admin.delete_product',$producto->id)}}" method="post">
+                                                    <a class="btn btn-primary" href="{{route('admin.view_edit_product',$producto->id)}}">Editar</a>
+                                                    
                                                     {{ csrf_field() }}
                                                     <button type="submit" class="btn btn-danger" >Eliminar</button>
                                                     </form>
